@@ -56,6 +56,9 @@
                             <code
                                 class="rounded bg-neutral-100 px-1.5 py-0.5 font-mono text-[11px] text-neutral-600 dark:bg-white/[0.05] dark:text-fg-dim">{{ $task->container }}</code>
                         @endif
+                        @unless ($task->enabled)
+                            <x-status-badge status="Disabled" />
+                        @endunless
                     </div>
                     <p class="mt-1 text-[13px] text-neutral-500 dark:text-fg-dim">
                         Runs on

@@ -61,6 +61,16 @@ test('task uuid in the url opens the modal on load', function () {
         ->assertSeeLivewire(Show::class);
 });
 
+test('the list marks a disabled task', function () {
+    Livewire::test(All::class, ['resource' => $this->application])
+        ->assertDontSee('Disabled');
+
+    $this->task->update(['enabled' => false]);
+
+    Livewire::test(All::class, ['resource' => $this->application->fresh()])
+        ->assertSee('Disabled');
+});
+
 test('a task of another resource cannot be opened', function () {
     $otherTask = ScheduledTask::factory()->create(['team_id' => Team::factory()->create()->id]);
 
